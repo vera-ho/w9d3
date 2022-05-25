@@ -9,10 +9,18 @@
 
 function FollowToggle(el) {
     this.el = el;
-    this.userId = $(el).attr("data-userid");
-    this.followState = $(el).attr("data-followstate");
+    this.userId = $(this.el).attr("data-userid");
+    this.followState = $(this.el).attr("data-followstate");
+
     this.render();
+    $(this.el).on("click", (e) => {
+        debugger
+        console.log("clicked")
+        this.handleClick(e);
+    })
+    // $(this.el).on("submit", (e) => { this.handleClick(e) })
     console.log("FollowToggle constructed");
+    debugger
 }
 
 FollowToggle.prototype.render = function() {
@@ -41,14 +49,14 @@ FollowToggle.prototype.handleClick = function(e) {
 const ftUtil = {
     newFollow: function() {
         return $.ajax({
-            url: user_follow(this.userID),
+            url: user_follow(this.userId),
             method: "POST"
         })
     }, 
 
     unfollow: function() {
         return $.ajax({
-            url: user_follow(this.userID),
+            url: user_follow(this.userId),
             method: "DELETE"
         })
     }
