@@ -17,8 +17,6 @@ function FollowToggle(el) {
         console.log("clicked")
         this.handleClick(e);
     })
-    // $(this.el).on("submit", (e) => { this.handleClick(e) })
-    console.log("FollowToggle constructed");
 }
 
 FollowToggle.prototype.render = function() {
@@ -29,7 +27,6 @@ FollowToggle.prototype.render = function() {
     } else {
         this.el.textContent = "Error!";
     }
-    console.log("Button rendered");
 }
 
 FollowToggle.prototype.handleClick = function(e) {
@@ -38,10 +35,8 @@ FollowToggle.prototype.handleClick = function(e) {
     debugger
     
     if(this.followState === "unfollowed") {
-        console.log("click handled - unfollowed");
         ftUtil.follow(this.userId);
     } else {
-        console.log("click handled - followed");
         ftUtil.unfollow(this.userId);
     }
     this.render();
@@ -104,12 +99,10 @@ var __webpack_exports__ = {};
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("document event listener start");
     let $followButtons = $("button.follow-toggle");
     $followButtons.each( (idx, el) => {
         let followButton = new FollowToggle(el);
     })
-    console.log("document event listener end");
 })
 })();
 

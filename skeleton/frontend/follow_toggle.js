@@ -8,8 +8,6 @@ function FollowToggle(el) {
         console.log("clicked")
         this.handleClick(e);
     })
-    // $(this.el).on("submit", (e) => { this.handleClick(e) })
-    console.log("FollowToggle constructed");
 }
 
 FollowToggle.prototype.render = function() {
@@ -20,7 +18,6 @@ FollowToggle.prototype.render = function() {
     } else {
         this.el.textContent = "Error!";
     }
-    console.log("Button rendered");
 }
 
 FollowToggle.prototype.handleClick = function(e) {
@@ -29,10 +26,8 @@ FollowToggle.prototype.handleClick = function(e) {
     debugger
     
     if(this.followState === "unfollowed") {
-        console.log("click handled - unfollowed");
         ftUtil.follow(this.userId);
     } else {
-        console.log("click handled - followed");
         ftUtil.unfollow(this.userId);
     }
     this.render();
