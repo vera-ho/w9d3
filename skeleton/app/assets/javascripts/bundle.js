@@ -14,13 +14,11 @@ function FollowToggle(el) {
 
     this.render();
     $(this.el).on("click", (e) => {
-        debugger
         console.log("clicked")
         this.handleClick(e);
     })
     // $(this.el).on("submit", (e) => { this.handleClick(e) })
     console.log("FollowToggle constructed");
-    debugger
 }
 
 FollowToggle.prototype.render = function() {
@@ -37,26 +35,30 @@ FollowToggle.prototype.render = function() {
 FollowToggle.prototype.handleClick = function(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("beep boop");
+    debugger
+    
     if(this.followState === "unfollowed") {
-        console.log("heyoooo")
-        return ftUtil.newFollow();
+        console.log("click handled - unfollowed");
+        ftUtil.follow(this.userId);
     } else {
-        return ftUtil.unfollow();
+        console.log("click handled - followed");
+        ftUtil.unfollow(this.userId);
     }
+    this.render();
 }
 
 const ftUtil = {
-    newFollow: function() {
-        return $.ajax({
-            url: user_follow(this.userId),
+    follow: function(userId) {
+        debugger
+        $.ajax({
+            url: `/users/${ userId }/follow`,
             method: "POST"
         })
     }, 
 
     unfollow: function() {
-        return $.ajax({
-            url: user_follow(this.userId),
+        $.ajax({
+            url: `/users/${ userId }/follow`,
             method: "DELETE"
         })
     }
